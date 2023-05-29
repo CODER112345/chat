@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Room</title>
+  <style>
+    #chat-container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    #messages-list {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    
+    #input-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    #message-input {
+      flex: 1;
+      margin-right: 10px;
+    }
+    
+    #send-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    
+    #send-button:hover {
+      opacity: 0.8;
+    }
+
+    #discord-emblem {
+      width: 50px; /* Adjust the desired width */
+      display: block;
+      margin: 0 auto 10px; /* Adjust the margin as needed */
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <img id="discord-emblem" src="https://th.bing.com/th/id/R.7f2461b228679ab1112b0de8601a03a4?rik=mMO6gv44xLD0ew&pid=ImgRaw&r=0" alt="Discord Emblem">
+
+    <div id="messages-list"></div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Type your message">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    var sendButton = document.getElementById('send-button');
+    var messageInput = document.getElementById('message-input');
+    var messagesList = document.getElementById('messages-list');
+
+    sendButton.addEventListener('click', function() {
+      var message = messageInput.value.trim();
+      if (message !== '') {
+        var messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messagesList.appendChild(messageElement);
+        messagesList.scrollTop = messagesList.scrollHeight;
+        messageInput.value = '';
+      }
+    });
+
+    messageInput.addEventListener('keydown', function(event) {
+      if (event.keyCode === 13) {
+        sendButton.click();
+      }
+    });
+  </script>
+</body>
+</html>
